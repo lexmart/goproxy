@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"fmt"
 )
 
 
@@ -38,6 +39,11 @@ func main() {
 			return actualPasswd == passwd
 		}
 		return false
+	})
+
+	proxy.NonproxyHandler = http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		fmt.Fprintln(w, "")
+		return 
 	})
 
 	proxy.Verbose = true
